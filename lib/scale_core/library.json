@@ -1,0 +1,11 @@
+{
+  "name": "scale_core",
+  "version": "0.1.0",
+  "description": "Logica pura de la bascula (tipos, filtros, estabilidad y matematicas de calibracion), sin dependencias de Arduino.",
+  "license": "MIT",
+  "build": {
+    "flags": [
+      "-std=gnu++17"
+    ]
+  }
+}

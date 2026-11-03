@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "author": "pesaDigital",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 0,
+      "left": 55,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-hx711",
+      "id": "hx711",
+      "top": -30,
+      "left": 105,
+      "attrs": { "type": "5kg" }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled",
+      "top": 20,
+      "left": 105,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btnTare",
+      "top": 55,
+      "left": 0,
+      "attrs": { "color": "green", "label": "TARA" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btnCal",
+      "top": 72,
+      "left": 0,
+      "attrs": { "color": "blue", "label": "CAL" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btnMode",
+      "top": 89,
+      "left": 0,
+      "attrs": { "color": "yellow", "label": "MODO" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer",
+      "top": 108,
+      "left": 0,
+      "attrs": { "volume": "0.1", "mode": "accurate" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 126,
+      "left": 0,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 126,
+      "left": 22,
+      "attrs": { "color": "green", "label": "ESTADO" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "txtTitle",
+      "top": -42,
+      "left": 0,
+      "attrs": { "text": "pesaDigital - Etapa 0 (esqueleto)" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "txtNote",
+      "top": -32,
+      "left": 0,
+      "attrs": { "text": "En Wokwi: HX711 y OLED a 5V (VIN). En placa real: 3.3V." }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "txtOled",
+      "top": 14,
+      "left": 105,
+      "attrs": { "text": "OLED SSD1306 0x3C" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "txtHx711",
+      "top": -40,
+      "left": 105,
+      "attrs": { "text": "HX711 + celda 5 kg (sin usar en Etapa 0)" }
+    }
+  ],
+  "connections": [
+    ["esp:TX0", "$serialMonitor:RX", "", []],
+    ["esp:RX0", "$serialMonitor:TX", "", []],
+
+    ["hx711:VCC", "esp:VIN", "red", []],
+    ["hx711:GND", "esp:GND.1", "black", []],
+    ["hx711:DT", "esp:RX2", "green", []],
+    ["hx711:SCK", "esp:TX2", "yellow", []],
+
+    ["oled:VCC", "esp:VIN", "red", []],
+    ["oled:GND", "esp:GND.1", "black", []],
+    ["oled:SDA", "esp:D21", "blue", []],
+    ["oled:SCL", "esp:D22", "yellow", []],
+
+    ["btnTare:1.l", "esp:D13", "green", []],
+    ["btnTare:2.l", "esp:GND.2", "black", []],
+    ["btnCal:1.l", "esp:D14", "blue", []],
+    ["btnCal:2.l", "esp:GND.2", "black", []],
+    ["btnMode:1.l", "esp:D27", "yellow", []],
+    ["btnMode:2.l", "esp:GND.2", "black", []],
+
+    ["esp:D33", "r1:1", "green", []],
+    ["r1:2", "led1:A", "green", []],
+    ["led1:C", "esp:GND.2", "black", []],
+
+    ["esp:D25", "buzzer:2", "orange", []],
+    ["buzzer:1", "esp:GND.2", "black", []]
+  ],
+  "dependencies": {}
+}
